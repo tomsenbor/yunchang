@@ -1,0 +1,9 @@
+<svg role="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <title>GitHub Copilot</title>
+  <rect width="64" height="64" rx="18" fill="#0D1117"/>
+  <path fill="#F0F6FC" d="M18.5 29.2c0-7.9 6.1-14.2 13.5-14.2s13.5 6.3 13.5 14.2v6.9c0 7.1-5.2 12.9-12.2 13.8a11 11 0 0 1-2.6 0c-7-.9-12.2-6.7-12.2-13.8v-6.9Z"/>
+  <path fill="#0D1117" d="M24.3 33.4c0-2.7 2.2-4.9 4.9-4.9h5.6c2.7 0 4.9 2.2 4.9 4.9v3.2c0 2.7-2.2 4.9-4.9 4.9h-5.6a4.9 4.9 0 0 1-4.9-4.9v-3.2Z"/>
+  <circle cx="29.2" cy="35" r="1.8" fill="#F0F6FC"/>
+  <circle cx="34.8" cy="35" r="1.8" fill="#F0F6FC"/>
+  <path fill="none" stroke="#F0F6FC" stroke-linecap="round" stroke-width="3.4" d="M21.7 26.3 14.2 22m28.1 4.3 7.5-4.3"/>
+</svg>

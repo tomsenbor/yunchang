@@ -1,0 +1,7 @@
+<svg role="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <title>腾讯元宝</title>
+  <rect width="64" height="64" rx="18" fill="#EFFDF8"/>
+  <path fill="#12B981" d="M14 34.8C14 22.2 24.2 12 36.8 12H50v13.2C50 37.8 39.8 48 27.2 48H14V34.8Z"/>
+  <path fill="#126BFF" d="M17 17h13.2C42.8 17 53 27.2 53 39.8V53H39.8C27.2 53 17 42.8 17 30.2V17Z" opacity=".92"/>
+  <path fill="#FFFFFF" d="M26 29.8c0-4.5 3.6-8.2 8.2-8.2h.6c4.6 0 8.2 3.7 8.2 8.2 0 4.6-3.6 8.2-8.2 8.2h-4.5l-5.3 4.6 1.4-5.4A8.1 8.1 0 0 1 26 29.8Z" opacity=".92"/>
+</svg>

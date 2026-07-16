@@ -1,0 +1,5 @@
+工具名称,官网链接,工具类型,适合人群,核心用途,免费情况,付费情况,中文体验,上手难度,优点,限制,替代工具,是否推荐,备注
+ChatGPT,https://chatgpt.com,AI助手,新手/职场人/创作者,问答/写作/总结/代码,免费+付费,以官网为准,较好,低,通用能力强,重要事实需核对,Claude/Gemini/DeepSeek,是,
+Claude,https://claude.ai,AI助手/写作工具,写作者/研究整理/长文档用户,长文档/写作/总结,免费+付费,以官网为准,较好,低,长文本处理好,最新信息需配合搜索,ChatGPT/Kimi,是,
+Perplexity,https://www.perplexity.ai,AI搜索,研究/资料整理/内容编辑,搜索/来源整理/调研,免费+付费,以官网为准,可用,低,保留来源方便核查,结论仍需看原文,Google/Gemini,是,
+Cursor,https://www.cursor.com,AI编程,开发者/技术学习者,读代码/改代码/生成组件,免费+付费,以官网为准,可用,中,适合项目开发,代码必须测试,Copilot/Claude Code,视情况,

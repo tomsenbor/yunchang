@@ -1,0 +1,6 @@
+# 示例：把域名替换成你的真实域名后，手动合并到服务器现有 Caddyfile。
+# 不要直接覆盖生产服务器上的 Caddyfile。
+aitoolguide.example.com {
+  encode gzip zstd
+  reverse_proxy 127.0.0.1:3001
+}

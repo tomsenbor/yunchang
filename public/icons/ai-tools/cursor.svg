@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>Cursor</title>
+  <rect width="64" height="64" rx="18" fill="#050505"/>
+  <path d="M14 10l38 18-16.1 5.1L28 54z" fill="#fff"/>
+  <path d="M26.9 25.2 43 29.5l-9.2 2.9-4.7 12.4z" fill="#050505"/>
+</svg>

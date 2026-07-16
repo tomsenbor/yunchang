@@ -1,0 +1,782 @@
+.compareDetailPage {
+  --compare-gutter: 64px;
+}
+
+.compareTarget,
+.compareTarget * {
+  box-sizing: border-box;
+}
+
+.compareTarget {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+.compareTarget .compareDocShell {
+  padding-left: 24px;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 880px) 220px !important;
+  column-gap: 56px !important;
+  width: min(calc(100% - 64px), 1480px) !important;
+  max-width: 1480px !important;
+  justify-content: center;
+  margin: 0 auto !important;
+  padding-top: 88px;
+  padding-bottom: 96px;
+  align-items: start;
+  overflow: visible !important;
+}
+
+.compareTarget .compareDocMain {
+  grid-column: 2;
+  width: 100%;
+  max-width: 880px;
+  min-width: 0 !important;
+  overflow: visible;
+}
+
+.compareTarget .compareDocRight {
+  grid-column: 3 !important;
+  display: block !important;
+  width: 220px !important;
+  justify-self: start;
+  position: sticky !important;
+  top: 96px !important;
+  align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 2;
+  min-width: 0 !important;
+}
+
+.compareTarget .compareDocRight nav,
+.compareTarget .compareToc {
+  overflow: visible !important;
+}
+
+.compareTarget .compareDocHeader {
+  text-align: left;
+  width: 100%;
+  max-width: 880px;
+  margin-bottom: 32px;
+}
+
+.compareTarget .compareDocHeader h1 {
+  text-align: left;
+  max-width: 100%;
+  margin: 0 0 16px;
+  color: #0f172a;
+  font-size: 34px;
+  line-height: 1.16;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.compareTarget .compareDocHeader p {
+  text-align: left;
+  max-width: 100%;
+  margin: 0 0 14px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.75;
+  white-space: normal;
+}
+
+.compareTarget .compareMeta {
+  text-align: left;
+  max-width: 100%;
+  margin-top: 18px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.compareTarget .compareDocContent {
+  width: 100%;
+  max-width: 880px;
+  min-width: 0;
+}
+
+.compareTarget .compareDashboard {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 56px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.92), rgba(255, 255, 255, 0.96));
+  padding: 18px 20px 20px;
+}
+
+.compareTarget .compareDashboardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.compareTarget .compareDashboardKicker {
+  margin: 0 0 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.compareTarget .compareDashboard h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.compareTarget .compareDashboardHeader p:not(.compareDashboardKicker) {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.compareTarget .compareDashboardPair {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 720;
+  white-space: normal;
+}
+
+.compareTarget .compareDashboardPair span {
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  background: #fff;
+  padding: 6px 10px;
+}
+
+.compareTarget .compareDashboardPair strong {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 820;
+}
+
+.compareTarget .compareDashboardGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 24px;
+  padding-top: 18px;
+}
+
+.compareTarget .compareBarsPanel,
+.compareTarget .compareDecisionPanel {
+  min-width: 0;
+}
+
+.compareTarget .compareBarsPanel h3,
+.compareTarget .compareDecisionPanel h3 {
+  margin: 0 0 14px;
+  color: #0f172a;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 760;
+}
+
+.compareTarget .compareBarsList {
+  display: grid;
+  gap: 16px;
+}
+
+.compareTarget .compareBarsRow {
+  display: grid;
+  gap: 9px;
+}
+
+.compareTarget .compareBarsLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: #0f172a;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 740;
+}
+
+.compareTarget .compareBarsLabel strong {
+  flex: 0 0 auto;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 660;
+}
+
+.compareTarget .compareBarsPair {
+  display: grid;
+  gap: 7px;
+}
+
+.compareTarget .compareBarsLine {
+  display: grid;
+  grid-template-columns: minmax(80px, 112px) minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.compareTarget .compareBarsLine i {
+  position: relative;
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.compareTarget .compareBarsLine b {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f7d91, rgba(15, 125, 145, 0.58));
+}
+
+.compareTarget .compareBarsLine .compareBarsSecond {
+  background: linear-gradient(90deg, #64748b, rgba(100, 116, 139, 0.48));
+}
+
+.compareTarget .compareBarsLine em {
+  color: #334155;
+  font-style: normal;
+  font-weight: 720;
+  text-align: right;
+}
+
+.compareTarget .compareDecisionPanel {
+  border-left: 1px solid #e2e8f0;
+  padding-left: 20px;
+}
+
+.compareTarget .compareScoreStack {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.compareTarget .compareScoreStack div {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px;
+}
+
+.compareTarget .compareScoreStack span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.compareTarget .compareScoreStack strong {
+  display: block;
+  margin-top: 5px;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 820;
+  letter-spacing: -0.03em;
+}
+
+.compareTarget .compareDecisionPanel p {
+  margin: 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.compareTarget .compareDecisionPanel p strong {
+  color: #0f172a;
+  font-weight: 760;
+}
+
+.compareTarget .compareDocContent,
+.compareTarget .compareDocContent p,
+.compareTarget .compareDocContent li,
+.compareTarget .compareDocContent td,
+.compareTarget .compareDocContent th,
+.compareTarget .compareDocContent a,
+.compareTarget .compareSection,
+.compareTarget .compareTable,
+.compareTarget .compareVerdict,
+.compareTarget .compareDashboard,
+.compareTarget .compareChoiceGrid,
+.compareTarget .compareScenarioList,
+.compareTarget .compareRecommendGrid {
+  max-width: 100%;
+}
+
+.compareTarget .compareSection {
+  margin-top: 56px;
+}
+
+.compareTarget .compareSection:first-child,
+.compareTarget .compareDocContent > .compareSection:first-of-type {
+  margin-top: 0;
+}
+
+.compareTarget .compareSection h2 {
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.28;
+  font-weight: 820;
+  letter-spacing: -0.02em;
+}
+
+.compareTarget .compareSection h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 760;
+}
+
+.compareTarget .compareSection p,
+.compareTarget .compareSection li,
+.compareTarget .compareSection td {
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.compareTarget .compareSection p {
+  margin: 0 0 14px;
+}
+
+.compareTarget .compareSection p:last-child {
+  margin-bottom: 0;
+}
+
+.compareTarget .compareVerdict {
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #0f172a;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin: 18px 0 28px;
+}
+
+.compareTarget .compareVerdict p {
+  margin: 0 0 10px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.compareTarget .compareVerdict strong {
+  color: #0f172a;
+  font-weight: 760;
+}
+
+.compareTarget .compareVerdict p:last-child {
+  margin-bottom: 0;
+}
+
+.compareTarget .compareChoiceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin: 20px 0 32px;
+}
+
+.compareTarget .compareChoiceBlock {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+}
+
+.compareTarget .compareChoiceBlock h3 {
+  color: #0f172a;
+  font-weight: 760;
+}
+
+.compareTarget .compareSubSectionHeading {
+  margin-top: 24px;
+}
+
+.compareTarget .compareChoiceBlock ul,
+.compareTarget .compareChoiceList {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.compareTarget .compareChoiceBlock li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eef2f7;
+  line-height: 1.65;
+}
+
+.compareTarget .compareChoiceBlock li:last-child {
+  border-bottom: none;
+}
+
+.compareTarget .compareScenarioList {
+  margin: 18px 0 32px;
+}
+
+.compareTarget .compareScenarioItem {
+  border-top: 1px solid #e2e8f0;
+  padding: 22px 0;
+}
+
+.compareTarget .compareScenarioItem:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.compareTarget .compareScenarioMeta {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.compareTarget .compareScenarioItem h3 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-weight: 760;
+}
+
+.compareTarget .compareScenarioPick {
+  margin-top: 10px;
+  color: #1e293b;
+  font-weight: 650;
+}
+
+.compareTarget .compareRecommendGrid {
+  display: grid;
+  gap: 20px;
+  margin: 20px 0 32px;
+}
+
+.compareTarget .compareRecommendBlock {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 18px;
+}
+
+.compareTarget .compareRecommendBlock h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-weight: 760;
+}
+
+.compareTarget .compareRecommendBlock ul,
+.compareTarget .compareRecommendBlock li {
+  margin: 0;
+  padding: 0;
+}
+
+.compareTarget .compareRecommendBlock li {
+  list-style: none;
+  padding: 7px 0;
+  line-height: 1.65;
+}
+
+.compareTarget .compareTable {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 20px 0 32px;
+  background: #fff;
+}
+
+.compareTarget .compareTable > table {
+  width: 100%;
+}
+
+.compareTarget .compareTable th,
+.compareTarget .compareTable td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 14px 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  text-align: left;
+  vertical-align: top;
+  color: #334155;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.compareTarget .compareTable th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.compareTarget .compareTable th:first-child,
+.compareTarget .compareTable td:first-child {
+  width: 17%;
+  font-weight: 650;
+}
+
+.compareTarget .compareTable tr:last-child td,
+.compareTarget .compareTable tr:last-child th {
+  border-bottom: none;
+}
+
+.compareTarget .compareToc {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 220px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.compareTarget .compareToc a {
+  display: block;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #64748b;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 150ms ease;
+  word-break: normal;
+}
+
+.compareTarget .compareToc a:hover,
+.compareTarget .compareToc a:focus-visible {
+  color: #0f172a;
+}
+
+.compareTarget .compareToc a.active {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.compareTarget .compareDocRight,
+.compareTarget .compareDocRight nav {
+  max-width: 220px;
+}
+
+.compareTarget .doc-title,
+.compareTarget .doc-subtitle,
+.compareTarget .doc-kicker,
+.compareTarget .doc-meta-row,
+.compareTarget .section-eyebrow,
+.compareTarget .doc-section-eyebrow,
+.compareTarget .compareSectionKicker,
+.compareTarget .sectionKicker {
+  text-align: left;
+}
+
+.compareTarget .doc-section-eyebrow,
+.compareTarget .compareSectionKicker,
+.compareTarget .sectionKicker {
+  display: none;
+}
+
+.compareTarget table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+}
+
+.compareTarget pre,
+.compareTarget code {
+  max-width: 100%;
+}
+
+@media (max-width: 1199px) {
+  .compareTarget .compareDocShell {
+    display: grid;
+    grid-template-columns: minmax(0, 820px) 200px;
+    column-gap: 40px;
+    justify-content: center;
+    width: min(calc(100% - 48px), 1160px);
+    max-width: 1160px;
+    padding-top: 80px;
+  }
+
+  .compareTarget .compareDocMain {
+    grid-column: 1;
+    max-width: 820px;
+  }
+
+  .compareTarget .compareDocRight {
+    grid-column: 2;
+    width: 200px;
+  }
+
+  .compareTarget .compareDocHeader h1 {
+    font-size: 34px;
+  }
+
+  .compareTarget .compareDocHeader,
+  .compareTarget .compareDocContent {
+    max-width: 820px;
+  }
+
+  .compareTarget .compareDashboardGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .compareTarget .compareDecisionPanel {
+    border-left: 0;
+    border-top: 1px solid #e2e8f0;
+    padding-left: 0;
+    padding-top: 18px;
+  }
+
+  .compareTarget .compareScoreStack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .compareTarget .compareDocShell {
+    grid-template-columns: minmax(0, 0.45fr)  minmax(0, 820px) 200px;
+    column-gap: 40px;
+    width: min(calc(100% - 48px), 1280px);
+    max-width: 1280px;
+    margin: 0 auto !important;
+    padding-left: 24px;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  .compareTarget .compareDocMain {
+    grid-column: 2;
+    max-width: 820px;
+  }
+
+  .compareTarget .compareDocRight {
+    grid-column: 3 !important;
+    width: 220px !important;
+    min-width: 0 !important;
+  }
+
+  .compareTarget .compareDocHeader h1 {
+    font-size: 34px;
+  }
+
+  .compareTarget .compareDocHeader,
+  .compareTarget .compareDocContent {
+    max-width: 820px;
+  }
+
+  .compareTarget .compareDashboardGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .compareTarget .compareDecisionPanel {
+    border-left: 0;
+    border-top: 1px solid #e2e8f0;
+    padding-left: 0;
+    padding-top: 18px;
+  }
+
+  .compareTarget .compareScoreStack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .compareTarget .compareDocShell {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 20px 72px;
+  }
+
+  .compareTarget .compareDocRight {
+    display: none;
+  }
+
+  .compareTarget .compareDocMain,
+  .compareTarget .compareDocHeader,
+  .compareTarget .compareDocContent {
+    max-width: 100%;
+  }
+
+  .compareTarget .compareDocHeader h1 {
+    font-size: 32px;
+  }
+
+  .compareTarget .compareChoiceGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .compareTarget .compareDashboard {
+    padding: 16px;
+  }
+
+  .compareTarget .compareDashboardHeader {
+    display: grid;
+    gap: 14px;
+  }
+
+  .compareTarget .compareDashboardPair {
+    justify-self: start;
+    flex-wrap: wrap;
+  }
+
+  .compareTarget .compareDashboardGrid,
+  .compareTarget .compareScoreStack {
+    grid-template-columns: 1fr;
+  }
+
+  .compareTarget .compareBarsLine {
+    grid-template-columns: minmax(64px, 88px) minmax(0, 1fr) 30px;
+    gap: 8px;
+  }
+
+  .compareTarget .compareTable,
+  .compareTarget .compareTable tbody,
+  .compareTarget .compareTable tr,
+  .compareTarget .compareTable th,
+  .compareTarget .compareTable td {
+    display: block;
+    width: 100%;
+  }
+
+  .compareTarget .compareTable thead {
+    display: none;
+  }
+
+  .compareTarget .compareTable th,
+  .compareTarget .compareTable td:first-child {
+    width: 100%;
+    min-width: 0;
+    padding-bottom: 4px;
+    background: #f8fafc;
+    white-space: normal;
+  }
+
+  .compareTarget .compareTable td {
+    padding-top: 8px;
+  }
+}

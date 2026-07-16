@@ -1,0 +1,33 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+Dockerfile.local
+dev-server*.log
+.deploy/
+
+# Generated, local and sensitive files
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.vercel/
+.netlify/
+.env
+.env.*
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+Thumbs.db
+.DS_Store
+
+# Videos are stored locally/on the production server, not in Git
+public/videos/*.mp4

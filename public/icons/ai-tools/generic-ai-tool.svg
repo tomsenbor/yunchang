@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generic AI tool logo">
+  <rect x="10" y="10" width="44" height="44" rx="14" fill="#F8FAFC"/>
+  <rect x="10.75" y="10.75" width="42.5" height="42.5" rx="13.25" stroke="#0F172A" stroke-opacity=".12" stroke-width="1.5"/>
+  <path d="M22 42L29.2 22H34.8L42 42H36.8L35.6 38.2H28.4L27.2 42H22ZM29.7 34H34.3L32 26.8L29.7 34Z" fill="#0F172A"/>
+  <path d="M45 22V42H40.3V22H45Z" fill="#0F172A"/>
+</svg>

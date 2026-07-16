@@ -1,0 +1,12 @@
+services:
+  ai-tool-guide:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-tool-guide
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3001

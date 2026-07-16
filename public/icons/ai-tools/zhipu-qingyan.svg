@@ -1,0 +1,8 @@
+<svg role="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <title>智谱清言</title>
+  <rect width="64" height="64" rx="18" fill="#F5F3FF"/>
+  <path fill="#6D5DFB" d="M17 13h33v8.2L30.4 43H50v8H14v-8.1L33.7 21H17v-8Z"/>
+  <path fill="#35D6CF" d="M45.6 16.7 22.4 42.5H14v-5.4L37.8 13H50v3.7h-4.4Z" opacity=".8"/>
+  <circle cx="45.5" cy="42.5" r="4.5" fill="#FFFFFF"/>
+  <circle cx="45.5" cy="42.5" r="2.4" fill="#6D5DFB"/>
+</svg>

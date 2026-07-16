@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>ElevenLabs</title>
+  <rect width="64" height="64" rx="18" fill="#050505"/>
+  <path d="M18 18h7v28h-7z" fill="#fff"/>
+  <path d="M30 14h7v36h-7z" fill="#fff"/>
+  <path d="M42 20h7v24h-7z" fill="#fff"/>
+</svg>
