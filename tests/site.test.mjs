@@ -368,7 +368,12 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.ok(css.includes('.site-page-container') && css.includes('max-width: calc(var(--site-max-width) + (var(--site-gutter) * 2))'), 'Functional pages should use the shared header-aligned container width');
   assert.ok(css.includes('.guide-detail-layout') && css.includes('max-width: calc(1308px + (var(--site-gutter) * 2))'), 'Guide detail layout should align to the shared gutter');
   assert.ok(css.includes('.tool-detail-page.doc-page-shell') && css.includes('padding-left: var(--site-gutter) !important'), 'Tool detail layout should align to the shared gutter');
-  assert.ok(css.includes('html,\nbody') && css.includes('min-height: 100%'), 'Html and body should provide full-height page background coverage');
+  assert.match(
+    css,
+    /html\s*,\s*body\s*\{(?=[^}]*min-height:\s*100%)(?=[^}]*background:\s*var\(--site-bg\))[^}]*\}/s,
+    'Html and body should provide full-height page background coverage'
+  );
+  assert.match(css, /body\s*\{[^}]*min-height:\s*100vh[^}]*\}/s, 'Body should cover at least the viewport height');
   assert.ok(css.includes('background: var(--site-bg)'), 'Unified page background should be a neutral gray-white, not a blue gradient');
   assert.ok(css.includes('body > main') && css.includes('background: transparent'), 'Root main should stay transparent over the unified page background');
   assert.ok(css.includes('.section-minimal') && css.includes('background: transparent'), 'Sections should not own independent background blocks');
