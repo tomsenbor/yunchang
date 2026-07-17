@@ -463,7 +463,11 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.match(css, /\.site-nav-link\[aria-current='page'\][^{]*\{[^}]*color: var\(--color-brand\);/s, 'Current navigation item should use the brand color');
   assert.ok(css.includes('color: #0f172a'), 'Header logo/navigation should use pure dark text');
   assert.ok(css.includes('.site-nav-panel-inner') && css.includes('background: transparent'), 'Expanded nav should be pure text without a card background');
-  assert.ok(!css.includes('site-nav-panel-inner {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: center;\n  gap: 0.35rem;\n  border: 1px'), 'Expanded nav should not use the old pill/card shell');
+  assert.doesNotMatch(
+    css,
+    /\.site-nav-panel-inner\s*\{(?=[^}]*display:\s*flex\s*;)(?=[^}]*flex-wrap:\s*wrap\s*;)(?=[^}]*align-items:\s*center\s*;)(?=[^}]*justify-content:\s*center\s*;)(?=[^}]*gap:\s*0\.35rem\s*;)(?=[^}]*border:\s*1px)[^}]*\}/s,
+    'Expanded nav should not use the old pill/card shell'
+  );
   assert.ok(css.includes('.fluid-core-toggle'), 'Hero should allow clicking the center ball area');
   assert.ok(css.includes('--hero-title-y: 45%'), 'Hero title should move down 5% from the previous position');
   assert.ok(css.includes('--hero-title-y: 47%'), 'Mobile hero title should move down 5% from the previous position');
@@ -537,8 +541,16 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.ok(css.includes('.hero-tool-button img') && css.includes('width: 2rem'), 'Hero tool SVG bodies should enlarge to 32px on desktop');
   assert.ok(css.includes('.tool-icon-tooltip') && css.includes('z-index: 80'), 'Tool icon tooltip should sit above the title stack');
   assert.ok(css.includes('background: rgba(15, 23, 42, 0.92)'), 'Tool icon tooltip should use a compact dark label');
-  assert.ok(css.includes('.fluid-static-fallback::before,\n.fluid-static-fallback::after,\n.fluid-fallback-orbit') && css.includes('display: none'), 'Hero orbit and ring line decorations should be hidden');
-  assert.ok(css.includes('.fluid-hero-fullscreen .fluid-scene-canvas-shell {\n  display: none;'), 'Hidden 3D orbit canvas should not render line decorations');
+  assert.match(
+    css,
+    /\.fluid-static-fallback::before\s*,\s*\.fluid-static-fallback::after\s*,\s*\.fluid-fallback-orbit\s*\{[^}]*display:\s*none\s*;[^}]*\}/s,
+    'Hero orbit and ring line decorations should be hidden'
+  );
+  assert.match(
+    css,
+    /\.fluid-hero-fullscreen\s+\.fluid-scene-canvas-shell\s*\{[^}]*display:\s*none\s*;[^}]*\}/s,
+    'Hidden 3D orbit canvas should not render line decorations'
+  );
   assert.ok(css.includes('.fluid-inline-search'), 'Expanded hero search should be a minimal inline rail');
   assert.ok(css.includes('font-size: clamp(0.81rem, 1.53vw, 0.945rem)'), 'Expanded hero subtitle should shrink by 10%');
   assert.ok(css.includes('width: min(31.5rem, calc(100vw - 40px))'), 'Expanded hero search should shrink to a 504px max width');
@@ -550,7 +562,11 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.ok(css.includes('background: rgba(255, 255, 255, 0.42)'), 'Expanded hero search should stay translucent');
   assert.ok(css.includes('backdrop-filter: blur(14px)'), 'Expanded hero search should use a light glass blur');
   assert.ok(!css.includes('border-bottom: 1px solid rgba(15, 23, 42, 0.14)'), 'Expanded hero search should not be bottom-line only');
-  assert.ok(!css.includes('.fluid-inline-search {\n  border: 1px solid rgba(15, 23, 42, 0.08);\n  border-radius: 1.5rem;\n  background: rgba(255, 255, 255, 0.9);\n  padding: 1rem'), 'Search should not use a card-like block');
+  assert.doesNotMatch(
+    css,
+    /\.fluid-inline-search\s*\{(?=[^}]*border:\s*1px\s+solid\s+rgba\(15\s*,\s*23\s*,\s*42\s*,\s*0\.08\)\s*;)(?=[^}]*border-radius:\s*1\.5rem\s*;)(?=[^}]*background:\s*rgba\(255\s*,\s*255\s*,\s*255\s*,\s*0\.9\)\s*;)(?=[^}]*padding:\s*1rem\s*;)[^}]*\}/s,
+    'Search should not use a card-like block'
+  );
   assert.ok(css.includes('background: transparent;'), 'Hero should sit on the unified page background');
   assert.ok(css.includes('width: 2.875rem'), 'Mobile hero tool buttons should use a 46px container');
   assert.ok(css.includes('width: 1.625rem'), 'Mobile hero tool SVG bodies should use a 26px size');
@@ -560,7 +576,11 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.ok(css.includes('opacity: 1'), 'Hero scroll hint should not be hidden by opacity');
   assert.ok(css.includes('transform: translateX(-50%)'), 'Hero scroll hint should keep its bottom-center position without being moved offscreen');
   assert.ok(css.includes('.fluid-main-title.is-playing .title-letter') && css.includes('animation: none !important'), 'Reduced motion should disable title letter animation');
-  assert.ok(css.includes('.hero-bounce-orb,\n  .hero-bounce-ball,\n  .hero-bounce-shadow,\n  .subtitle-part') && css.includes('animation: none !important'), 'Reduced motion should disable the collision ball, shadow, and subtitle piano animation');
+  assert.match(
+    css,
+    /\.hero-bounce-orb\s*,\s*\.hero-bounce-ball\s*,\s*\.hero-bounce-shadow\s*,\s*\.subtitle-part\s*\{[^}]*animation:\s*none\s*!important\s*;[^}]*\}/s,
+    'Reduced motion should disable the collision ball, shadow, and subtitle piano animation'
+  );
   assert.ok(!css.includes('linear-gradient(115deg, transparent 0 39%'), 'Hero should not render diagonal background lines');
   assert.ok(!css.includes('linear-gradient(144deg, transparent 0 57%'), 'Hero should not render diagonal background lines');
   assert.ok(!css.includes('linear-gradient(28deg, transparent 0 62%'), 'Hero should not render diagonal background lines');
@@ -617,7 +637,11 @@ test('global CSS keeps the gallery system and reduced motion guard', () => {
   assert.ok(css.includes('.home-section-container') && css.includes('max-width: 1440px') && css.includes('padding-left: clamp(1rem, 6.5vw, 6rem)') && css.includes('padding-right: clamp(1rem, 6.5vw, 6rem)'), 'Lower home sections should align to the header logo edge with one shared container');
   assert.ok(css.includes('.section-minimal') && css.includes('padding: 72px 0'), 'Lower home sections should use consistent vertical whitespace');
   assert.ok(css.includes('.section-eyebrow') && css.includes('background: #ffffff') && css.includes('color: #334155') && css.includes('box-shadow: 0 8px 22px rgba(15, 23, 42, .04)'), 'All lower section eyebrow pills should use a minimal gray-white style');
-  assert.ok(css.includes('.gallery-card,\n.create-tool-card,\n.global-tool-card') && css.includes('background: rgba(255, 255, 255, .86)') && css.includes('border-radius: 28px'), 'All lower cards should share the unified Apple-style surface');
+  assert.match(
+    css,
+    /\.gallery-card\s*,\s*\.create-tool-card\s*,\s*\.global-tool-card\s*\{(?=[^}]*background:\s*rgba\(255\s*,\s*255\s*,\s*255\s*,\s*0?\.86\)\s*;)(?=[^}]*border-radius:\s*28px\s*;)[^}]*\}/s,
+    'All lower cards should share the unified Apple-style surface'
+  );
   assert.ok(css.includes('0 18px 48px rgba(15, 23, 42, .06)') && css.includes('0 2px 8px rgba(15, 23, 42, .04)'), 'Unified lower cards should use a softer Apple-style shadow');
   assert.ok(css.includes('.interactive-card::before') && css.includes('display: none'), 'Lower cards should remove colorful top accent lines');
   assert.ok(css.includes('.shine-effect::after') && css.includes('display: none'), 'Lower cards should remove decorative shine sweeps');
