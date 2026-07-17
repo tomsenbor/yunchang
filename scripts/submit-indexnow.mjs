@@ -179,7 +179,7 @@ async function main() {
     }
 
     console.log(`IndexNow 批次 ${Math.floor(offset / MAX_BATCH_SIZE) + 1}/${batchCount}：HTTP ${response.status}，URL ${batch.length}`);
-    if (response.status !== 200) {
+    if (response.status !== 200 && response.status !== 202) {
       const reasons = {
         400: '请求格式无效',
         403: 'Key 验证失败',
@@ -187,6 +187,10 @@ async function main() {
         429: '请求过多',
       };
       throw new Error(`IndexNow 未接收该批次：HTTP ${response.status} ${reasons[response.status] ?? '未知错误'}；未自动重试。`);
+    }
+
+    if (response.status === 202) {
+      console.log('IndexNow 已接收该批次，Key 验证正在处理；不会自动重试。');
     }
 
     const submittedAt = new Date().toISOString();
