@@ -10,6 +10,7 @@ pnpm-debug.log*
 Dockerfile.local
 dev-server*.log
 .deploy/
+tmp/search-submit/
 
 # Generated, local and sensitive files
 node_modules/
