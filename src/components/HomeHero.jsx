@@ -344,7 +344,7 @@ export function HomeHero({ hero }) {
               aria-label={heroTitle}
               onClick={handleTitleClick}
             >
-              <span className="sr-only">AI效率工具库｜全球与国产 AI 工具教程</span>
+              <span className="sr-only">AI效率工具库｜全球AI工具教程、评测与工作流</span>
               {titleLetters.map((char, index) => {
                 if (char === ' ') {
                   return (

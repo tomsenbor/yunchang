@@ -69,9 +69,9 @@ aitoolguide.example.com {
 }
 ```
 
-## 上线前建议
+## 发布与维护建议
 
-- 把 `src/lib/site-data.mjs` 里的 `SITE_URL` 从 `https://aitoolguide.example.com` 改为真实域名。
-- 用真实截图、视频、评测记录替换占位内容。
-- 为联盟推广添加披露文字，并保持外链 `rel="sponsored nofollow"`。
-- 根据实际统计、评论、订阅和下载功能完善隐私政策。
+- 站点域名统一由 `src/lib/site-data.mjs` 中的 `SITE_URL` 管理。
+- 工具截图、视频和评测记录应随产品版本持续更新。
+- 联盟推广需要明确披露，并保持外链 `rel="sponsored nofollow"`。
+- 根据实际统计、评论、订阅和下载功能持续维护隐私政策。

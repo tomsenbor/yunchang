@@ -30,8 +30,8 @@ export function HomeToolGalleries({ globalTools, creativeTools }: HomeToolGaller
     <>
       <Section
         eyebrow="Model Gallery"
-        title="全球热门 AI 大模型"
-        description="先从全球最常用、最值得学习的 AI 工具开始，覆盖聊天、搜索、写作、图片、视频、语音、办公和编程。"
+        title="全球热门 AI 工具"
+        description="精选全球主流 AI 工具，覆盖聊天、搜索、写作、设计、视频、办公和编程。"
         tone="section-accent-cyan"
         className="home-section-first global-tools-section"
         action={

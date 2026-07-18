@@ -2,7 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { JsonLd } from '../../../components/JsonLd.jsx';
 import ToolDetailNavigation from '../../../components/ToolDetailNavigation.jsx';
-import { getCategory, getTool, tools } from '../../../lib/site-data.mjs';
+import {
+  TOOL_RATING_METHODOLOGY,
+  TOOL_RATING_UPDATED_AT,
+  getCategory,
+  getTool,
+  tools
+} from '../../../lib/site-data.mjs';
 import { breadcrumbJsonLd, pageMetadata } from '../../../lib/seo.mjs';
 
 const chatgptDetailTitle = 'ChatGPT AI 助手评测与教程';
@@ -193,7 +199,7 @@ function getFocusLine(tool) {
 
 function getExternalLinkItems(tool) {
   return [
-    tool.affiliateUrl ? '官方网站' : '官方网站入口以项目后续人工确认为准',
+    tool.affiliateUrl ? '官方网站' : '官方网站入口以官方实际页面为准',
     '帮助中心',
     '价格页',
     '更新日志',
@@ -472,6 +478,10 @@ function ChatGPTDetailSections() {
             </tbody>
           </table>
         </div>
+        <p className="doc-callout">
+          {TOOL_RATING_METHODOLOGY} 最近更新时间：{TOOL_RATING_UPDATED_AT}。详细标准见
+          <Link href="/methodology">AI工具评测方法</Link>。
+        </p>
         <p className="doc-callout">ChatGPT 的功能、可用模型和套餐能力会随官方更新变化，具体以实际版本和页面更新时间为准。</p>
       </section>
 
@@ -669,6 +679,10 @@ function GenericToolSections({
             </tbody>
           </table>
         </div>
+        <p className="doc-callout">
+          {TOOL_RATING_METHODOLOGY} 最近更新时间：{TOOL_RATING_UPDATED_AT}。详细标准见
+          <Link href="/methodology">AI工具评测方法</Link>。
+        </p>
         <p className="doc-callout">{tool.name} 的价格、套餐、入口、可用能力和模型更新会随官方调整变化，涉及购买、商用或专业判断时请以官网实际显示为准。</p>
       </section>
 

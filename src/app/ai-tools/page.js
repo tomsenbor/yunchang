@@ -168,7 +168,7 @@ const dataRules = [
   '不把 ChatGPT、Claude、Gemini 等产品体验直接等同于模型能力。',
   '不把参数规模当作模型质量的唯一判断标准。',
   '不写未核对的 benchmark 排名、训练数据范围和最大上下文数值。',
-  '上线前生产选型必须回到官方文档、控制台和实际测试结果。'
+  '生产环境选型必须回到官方文档、控制台和实际测试结果。'
 ];
 
 export default function AiToolsPage() {
@@ -269,7 +269,7 @@ export default function AiToolsPage() {
                   ))}
                 </div>
                 <div className="model-verify-box">
-                  <strong>上线前重点核对</strong>
+                  <strong>生产使用重点核对</strong>
                   <p>{model.verify.join(' / ')}</p>
                 </div>
               </article>

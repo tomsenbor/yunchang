@@ -1,8 +1,12 @@
 import { ToolCard, Section } from '../../components/Cards.jsx';
-import { tools } from '../../lib/site-data.mjs';
+import {
+  TOOL_RATING_METHODOLOGY,
+  TOOL_RATING_UPDATED_AT,
+  tools
+} from '../../lib/site-data.mjs';
 import { pageMetadata } from '../../lib/seo.mjs';
 
-const FREE_TOOL_REVIEW_DATE = '2026-07-15';
+const FREE_TOOL_REVIEW_DATE = TOOL_RATING_UPDATED_AT;
 
 export const metadata = pageMetadata({
   title: '免费AI工具合集',
@@ -13,7 +17,11 @@ export const metadata = pageMetadata({
 export default function FreeAiToolsPage() {
   const freeTools = tools.filter((tool) => tool.pricing.includes('免费'));
   return (
-    <Section eyebrow="Free Tools" title="免费AI工具合集" description="整理提供免费版本或免费使用入口的 AI 工具；免费额度、登录要求和套餐信息以官方实际页面为准。">
+    <Section
+      eyebrow="Free Tools"
+      title="免费AI工具合集"
+      description={`整理提供免费版本或免费使用入口的 AI 工具；免费额度、登录要求和套餐信息以官方实际页面为准。${TOOL_RATING_METHODOLOGY} 最近更新时间：${TOOL_RATING_UPDATED_AT}。`}
+    >
       <div className="site-page-grid tool-grid grid md:grid-cols-3">
         {freeTools.map((tool) => (
           <ToolCard

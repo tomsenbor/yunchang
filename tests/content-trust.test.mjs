@@ -13,9 +13,19 @@ test('live pages do not expose prelaunch placeholder copy', () => {
     'src/app/privacy/page.js',
     'src/app/templates/page.js',
     'src/app/free-ai-tools/page.js',
+    'src/app/about/page.js',
+    'src/app/ai-tools/page.js',
+    'src/app/ai-tools/[slug]/page.js',
+    'src/app/methodology/page.js',
     'src/app/videos/[slug]/page.js'
   ].map(read).join('\n');
   const bannedCopy = [
+    '预留',
+    '待完善',
+    '上线前',
+    '后续补充',
+    '后续扩展',
+    '可扩展',
     '预留人工补充',
     '正式上线前',
     '当前项目模板',
@@ -48,8 +58,16 @@ test('free tool cards disclose verification and official-source details', () => 
 });
 
 test('compare scores disclose methodology, date, and limitations', () => {
-  const source = read('src/app/compare/[slug]/page.js');
+  const source = [
+    'src/lib/site-data.mjs',
+    'src/app/ai-tools/[slug]/page.js',
+    'src/app/free-ai-tools/page.js',
+    'src/app/compare/[slug]/page.js',
+    'src/app/methodology/page.js'
+  ].map(read).join('\n');
   const requiredCopy = [
+    '评分基于功能完整度、易用性、适用场景、免费体验和实际使用反馈综合评估',
+    '最近更新时间',
     '中文写作',
     '长文处理',
     '代码辅助',
@@ -70,10 +88,32 @@ test('home hero uses a Chinese SEO h1 while retaining the English visual title',
   const source = read('src/components/HomeHero.jsx');
 
   assert.ok(
-    source.includes('<span className="sr-only">AI效率工具库｜全球与国产 AI 工具教程</span>'),
+    source.includes('<span className="sr-only">AI效率工具库｜全球AI工具教程、评测与工作流</span>'),
     '首页缺少中文核心关键词 H1'
   );
+  assert.equal((source.match(/<h1\b/g) ?? []).length, 1, '首页 Hero 应只有一个主要 H1');
   assert.ok(source.includes('aria-label={heroTitle}'), '首页英文视觉标题缺少原有辅助阅读标签');
   assert.ok(source.includes('fluid-main-title'), '首页英文视觉标题样式被移除');
   assert.ok(source.includes('AI FLUID LAB'), '首页英文品牌视觉文案被移除');
+});
+
+test('methodology page discloses sources, dimensions, updates, scoring, and cooperation', () => {
+  const source = `${read('src/app/methodology/page.js')}\n${read('src/lib/site-data.mjs')}`;
+  const requiredCopy = [
+    '工具信息来源',
+    '测试维度',
+    '功能能力',
+    '易用性',
+    '免费额度',
+    '适合人群',
+    '实际工作场景',
+    '更新频率',
+    '评分标准',
+    '商业合作说明',
+    "'/methodology'"
+  ];
+
+  for (const phrase of requiredCopy) {
+    assert.ok(source.includes(phrase), `评测方法页缺少：${phrase}`);
+  }
 });

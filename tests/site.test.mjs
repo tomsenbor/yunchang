@@ -831,7 +831,8 @@ test('home page uses minimal sections and compact gallery grids', () => {
   assert.ok(galleries.includes('href="/ai-tools" className="home-section-action magnetic-button"'), 'Creative tools action should keep its link and use the unified capsule action');
   assert.ok(galleries.includes('查看全部') && galleries.includes('查看工具库'), 'Tool gallery action copy should stay unchanged');
   assert.ok(galleries.includes('eyebrow="Model Gallery"'), 'global tools section eyebrow should be renamed to Model Gallery');
-  assert.ok(galleries.includes('title="全球热门 AI 大模型"'), 'global tools section title should be renamed to global hot AI models');
+  assert.ok(galleries.includes('title="全球热门 AI 工具"'), 'global tools section title should describe the mixed AI tool collection');
+  assert.ok(galleries.includes('精选全球主流 AI 工具，覆盖聊天、搜索、写作、设计、视频、办公和编程。'), 'global tools section should describe its actual categories');
   assert.ok(!galleries.includes('showAllGlobal'), 'global tools section should remove the show-more grid toggle');
   assert.ok(!galleries.includes('globalTools.slice(0, 6)'), 'global tools carousel should not cap itself to the old six-card grid');
   assert.ok(!galleries.includes('home-global-tools-grid'), 'global tools section should not keep the old grid hook');

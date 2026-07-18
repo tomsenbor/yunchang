@@ -1,6 +1,11 @@
 ﻿import { notFound } from 'next/navigation';
 import { JsonLd } from '../../../components/JsonLd.jsx';
-import { comparisons, getComparison } from '../../../lib/site-data.mjs';
+import {
+  TOOL_RATING_METHODOLOGY,
+  TOOL_RATING_UPDATED_AT,
+  comparisons,
+  getComparison
+} from '../../../lib/site-data.mjs';
 import { breadcrumbJsonLd, pageMetadata } from '../../../lib/seo.mjs';
 import styles from './page.module.css';
 
@@ -395,7 +400,7 @@ function ComparisonDashboard({ detail, tools }) {
       </div>
 
       <p className="mt-4 rounded-lg border border-line bg-soft px-4 py-3 text-sm leading-6 text-muted">
-        以下评分为本站基于公开产品信息与常见使用场景整理的选型参考，主要参考中文写作、长文处理、代码辅助、资料整理、上手难度和工作流适配等维度。内容核查日期：2026-07-15。评分不代表官方评分或官方性能排名，也不代表所有场景下的绝对结论；实际体验会随版本、地区、套餐和任务变化。
+        {TOOL_RATING_METHODOLOGY} 本页还参考中文写作、长文处理、代码辅助、资料整理、上手难度和工作流适配等维度。内容核查日期：{TOOL_RATING_UPDATED_AT}。以下分数是本站选型参考，不代表官方评分或官方性能排名，也不代表所有场景下的绝对结论；实际体验会随版本、地区、套餐和任务变化。
       </p>
 
       <div className={styles.compareDashboardGrid}>

@@ -9,6 +9,9 @@ export const SITE_URL = configuredSiteUrl.replace(/\/$/, '');
 export const SITE_NAME = 'AI效率工具库';
 export const SITE_DESCRIPTION =
   '面向中文用户的全球 AI 工具教程、评测、对比、免费视频解说和效率模板下载网站。';
+export const TOOL_RATING_METHODOLOGY =
+  '评分基于功能完整度、易用性、适用场景、免费体验和实际使用反馈综合评估。';
+export const TOOL_RATING_UPDATED_AT = '2026-07-18';
 
 export const homeSeo = {
   title: '全球AI工具攻略库 - ChatGPT、Claude、Gemini、DeepSeek、Midjourney 与 Runway 教程',
@@ -321,6 +324,7 @@ export const staticRoutes = [
   '/videos',
   '/free-ai-tools',
   '/templates',
+  '/methodology',
   '/about',
   '/contact',
   '/privacy'
