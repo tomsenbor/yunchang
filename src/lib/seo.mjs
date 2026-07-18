@@ -56,6 +56,9 @@ export function breadcrumbJsonLd(items) {
 }
 
 export function articleJsonLd(article, path) {
+  const datePublished = article.publishedAt || article.updatedAt;
+  const dateModified = article.updatedAt || datePublished;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -63,8 +66,8 @@ export function articleJsonLd(article, path) {
     description: article.excerpt,
     author: { '@type': 'Organization', name: article.author || SITE_NAME },
     publisher: { '@type': 'Organization', name: SITE_NAME },
-    datePublished: article.updatedAt,
-    dateModified: article.updatedAt,
+    datePublished,
+    dateModified,
     mainEntityOfPage: buildCanonicalUrl(path)
   };
 }

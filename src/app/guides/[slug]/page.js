@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { GuideContextLinks } from '../../../components/GuideContextLinks.jsx';
 import { JsonLd } from '../../../components/JsonLd.jsx';
-import { getCategory, getGuide, guides, tools } from '../../../lib/site-data.mjs';
+import { getGuide, getGuideContext, guides } from '../../../lib/guide-content.mjs';
+import { getCategory, tools } from '../../../lib/site-data.mjs';
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, pageMetadata } from '../../../lib/seo.mjs';
 
 export function generateStaticParams() {
@@ -709,12 +711,17 @@ export default async function GuideDetailPage({ params }) {
   const mistakes = buildMistakes();
   const completionChecks = buildCompletionChecks();
   const nextLearning = buildNextLearning(guide, profile, nextGuides);
+  const guideContext = getGuideContext(guide);
 
   return (
     <article className="guide-detail-page">
       <JsonLd data={breadcrumbJsonLd([
         { name: '首页', href: '/' },
         { name: '教程', href: '/guides' },
+        {
+          name: guideContext.category.name,
+          href: `/guides/category/${guideContext.category.slug}`
+        },
         { name: guide.title, href: `/guides/${guide.slug}` }
       ])} />
       <JsonLd data={articleJsonLd(guide, `/guides/${guide.slug}`)} />
@@ -934,15 +941,9 @@ export default async function GuideDetailPage({ params }) {
                   </ul>
                 </section>
               </div>
-              <div className="guide-next-links">
-                {nextLearning.recommendations.map((item) => (
-                  <Link key={item.slug} href={`/guides/${item.slug}`}>
-                    <span>{normalizeTitle(item)}</span>
-                    <small>{item.outcome}</small>
-                  </Link>
-                ))}
-              </div>
             </section>
+
+            <GuideContextLinks {...guideContext} />
           </article>
         </main>
 

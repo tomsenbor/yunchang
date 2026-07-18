@@ -1,6 +1,6 @@
 import { Section } from '../../components/Cards.jsx';
 import { GuideListShowcase } from '../../components/GuideListShowcase.jsx';
-import { guides } from '../../lib/site-data.mjs';
+import { guides } from '../../lib/guide-content.mjs';
 import { pageMetadata } from '../../lib/seo.mjs';
 
 export const metadata = pageMetadata({
