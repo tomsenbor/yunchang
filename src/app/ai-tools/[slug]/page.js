@@ -2,13 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { JsonLd } from '../../../components/JsonLd.jsx';
 import ToolDetailNavigation from '../../../components/ToolDetailNavigation.jsx';
+import ToolRelatedContent from '../../../components/ToolRelatedContent.jsx';
 import {
   TOOL_RATING_METHODOLOGY,
   TOOL_RATING_UPDATED_AT,
-  getCategory,
-  getTool,
-  tools
+  getCategory
 } from '../../../lib/site-data.mjs';
+import { getTool, getToolRelations, tools } from '../../../lib/tool-content.mjs';
 import { breadcrumbJsonLd, pageMetadata } from '../../../lib/seo.mjs';
 
 const chatgptDetailTitle = 'ChatGPT AI 助手评测与教程';
@@ -211,16 +211,16 @@ function getExternalLinkItems(tool) {
 function buildInfoRows(tool, category) {
   return [
     ['工具名称', tool.name],
-    ['开发公司', getDeveloper(tool)],
-    ['官方地址', tool.affiliateUrl || '以官网实际入口为准'],
+    ['开发公司', tool.developer || getDeveloper(tool)],
+    ['官方地址', tool.officialUrl || tool.affiliateUrl || '以官网实际入口为准'],
     ['工具类型', getToolTypeLabel(tool)],
-    ['主要入口', getMainEntrance(tool)],
+    ['可用平台', listOrFallback(tool.platforms, [getMainEntrance(tool)]).join('、')],
     ['适合用户', tool.audience || '需要提升效率的中文用户'],
-    ['核心能力', listOrFallback(tool.features, [tool.bestFor]).join('、')],
+    ['核心能力', listOrFallback(tool.capabilities, tool.features || [tool.bestFor]).join('、')],
     ['价格模式', `${tool.pricing || '以官网为准'}，具体额度和套餐以官网为准`],
     ['上手难度', getDifficulty(tool)],
     ['中文支持', getChineseSupport(tool)],
-    ['推荐指数', `${tool.rating} / 5`]
+    ['推荐指数', tool.rating ? `${tool.rating} / 5` : '待评估']
   ];
 }
 
@@ -846,9 +846,9 @@ function GenericToolSections({
         <ul className="doc-simple-list">
           {externalLinkItems.map((item) => <li key={item}>{item}</li>)}
         </ul>
-        {tool.affiliateUrl ? (
+        {(tool.officialUrl || tool.affiliateUrl) ? (
           <p className="doc-external-note">
-            <a href={tool.affiliateUrl} rel="sponsored nofollow noopener" className="font-bold text-brand">
+            <a href={tool.officialUrl || tool.affiliateUrl} rel="sponsored nofollow noopener" className="font-bold text-brand">
               访问 {tool.name}
             </a>
             。价格、套餐、功能和模型更新以官网实际显示为准。
@@ -895,6 +895,7 @@ export default async function ToolDetailPage({ params }) {
     .filter((item) => item.slug !== tool.slug && item.categorySlug === tool.categorySlug)
     .slice(0, 4);
   const sidebarTools = alternativeTools.length > 0 ? alternativeTools : relatedTools;
+  const contentRelations = getToolRelations(tool.slug);
   const useCaseItems = buildUseCaseItems(useCases, tool);
   const quickStartItems = buildStepItems(quickStart);
   const scenarioItems = buildScenarioItems(scenarios, tool);
@@ -904,7 +905,7 @@ export default async function ToolDetailPage({ params }) {
     getToolTypeLabel(tool),
     category?.name,
     getFocusLine(tool),
-    `${tool.rating} / 5`
+    tool.rating ? `${tool.rating} / 5` : '推荐指数待评估'
   ].filter(Boolean);
 
   return (
@@ -967,6 +968,7 @@ export default async function ToolDetailPage({ params }) {
                 sidebarTools={sidebarTools}
               />
             )}
+            <ToolRelatedContent tool={tool} relations={contentRelations} />
           </div>
         </main>
 

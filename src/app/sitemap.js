@@ -5,6 +5,7 @@ import {
   guideCategoryRoutes,
   guides
 } from '../lib/guide-content.mjs';
+import { toolCategoryRoutes, toolRoutes } from '../lib/tool-content.mjs';
 
 const guideUpdatedAtByRoute = new Map(
   guides.map((guide) => [`/guides/${guide.slug}`, guide.updatedAt])
@@ -18,7 +19,12 @@ const categoryUpdatedAtByRoute = new Map(
 );
 
 export default function sitemap() {
-  const routes = [...new Set([...getAllRoutes(), ...guideCategoryRoutes])];
+  const routes = [...new Set([
+    ...getAllRoutes(),
+    ...guideCategoryRoutes,
+    ...toolCategoryRoutes,
+    ...toolRoutes
+  ])];
 
   return routes.map((route) => ({
     url: `${SITE_URL}${route === '/' ? '' : route}`,
@@ -28,6 +34,10 @@ export default function sitemap() {
       || '2026-06-17'
     ),
     changeFrequency: 'weekly',
-    priority: route === '/' ? 1 : route.startsWith('/guides/category/') ? 0.8 : 0.7
+    priority: route === '/'
+      ? 1
+      : route.startsWith('/guides/category/') || route.startsWith('/ai-tools/category/')
+        ? 0.8
+        : 0.7
   }));
 }

@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { Section } from '../../components/Cards.jsx';
 import { pageMetadata } from '../../lib/seo.mjs';
+import { toolCategories } from '../../lib/tool-content.mjs';
 
 export const metadata = pageMetadata({
   title: 'AI模型库',
@@ -222,6 +224,22 @@ export default function AiToolsPage() {
                 <span>{track.label}</span>
                 <h3>{track.pick}</h3>
                 <p>{track.reason}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="model-library-section">
+          <h2>按任务查找 AI 工具</h2>
+          <div className="model-track-grid">
+            {toolCategories.map((category) => (
+              <article key={category.slug}>
+                <span>AI 工具分类</span>
+                <h3>{category.name}</h3>
+                <p>{category.description}</p>
+                <Link className="mt-3 inline-flex font-semibold text-brand" href={`/ai-tools/category/${category.slug}`}>
+                  查看分类工具 →
+                </Link>
               </article>
             ))}
           </div>

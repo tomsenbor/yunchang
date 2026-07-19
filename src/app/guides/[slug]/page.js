@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { GuideContextLinks } from '../../../components/GuideContextLinks.jsx';
+import { GuideRelatedContent } from '../../../components/GuideRelatedContent.jsx';
 import { JsonLd } from '../../../components/JsonLd.jsx';
 import { getGuide, getGuideContext, guides } from '../../../lib/guide-content.mjs';
 import { getCategory, tools } from '../../../lib/site-data.mjs';
@@ -31,8 +31,15 @@ const tocItems = [
   ['prompts', '提示词模板'],
   ['mistakes', '常见错误'],
   ['check', '完成检查'],
+  ['faq', '常见问题'],
   ['next', '下一步学习']
 ];
+
+const levelLabels = {
+  beginner: '入门',
+  intermediate: '进阶',
+  advanced: '高级'
+};
 
 const categoryProfiles = {
   'ai-assistant': {
@@ -748,10 +755,12 @@ export default async function GuideDetailPage({ params }) {
               </Link>
             ) : null}
             <div className="guide-meta-row" aria-label="教程信息">
-              <span>{guide.updatedAt}</span>
+              <span>作者：{guide.author}</span>
+              <span>审核：{guide.reviewer}</span>
+              <span>更新：{guide.updatedAt}</span>
               <span>{guide.readTime}</span>
               <span>{category?.name || 'AI 教程'}</span>
-              <span>新手入门</span>
+              <span>难度：{levelLabels[guide.level] || guide.level}</span>
             </div>
           </header>
 
@@ -924,6 +933,19 @@ export default async function GuideDetailPage({ params }) {
               </ul>
             </section>
 
+            <section className="guide-section" id="faq">
+              <p className="guide-section-kicker">FAQ</p>
+              <h2>常见问题</h2>
+              <div className="next-learning-list">
+                {guide.faq.map((item) => (
+                  <section key={item.question}>
+                    <h3>{item.question}</h3>
+                    <p>{item.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </section>
+
             <section className="guide-section" id="next">
               <p className="guide-section-kicker">Next learning</p>
               <h2>下一步学习</h2>
@@ -943,7 +965,7 @@ export default async function GuideDetailPage({ params }) {
               </div>
             </section>
 
-            <GuideContextLinks {...guideContext} />
+            <GuideRelatedContent {...guideContext} />
           </article>
         </main>
 
