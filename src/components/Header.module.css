@@ -1,0 +1,62 @@
+.overlayDarkHeader {
+  position: absolute;
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.overlayDarkHeader :global(.brand-mark),
+.overlayDarkHeader :global(.brand-cn) {
+  color: #f6f9ff;
+}
+
+.overlayDarkHeader :global(.brand-en) {
+  color: #aebbd0;
+  opacity: 0.68;
+}
+
+.overlayDarkHeader :global(.site-menu-toggle) {
+  border-color: rgba(221, 235, 255, 0.18);
+  background: rgba(31, 54, 91, 0.72);
+  color: #edf5ff;
+}
+
+.overlayDarkHeader :global(.site-menu-toggle:hover),
+.overlayDarkHeader :global(.site-menu-toggle:focus-visible) {
+  border-color: rgba(103, 221, 212, 0.45);
+  background: rgba(47, 75, 116, 0.8);
+  color: #67ddd4;
+}
+
+@media (min-width: 1180px) {
+  .overlayDarkHeader :global(.site-nav-link) {
+    color: #c7d2e4;
+  }
+
+  .overlayDarkHeader :global(.site-nav-link:hover),
+  .overlayDarkHeader :global(.site-nav-link:focus-visible),
+  .overlayDarkHeader :global(.site-nav-dropdown[data-open='true'] > .site-nav-dropdown-trigger) {
+    color: #f7fbff;
+    background: rgba(103, 221, 212, 0.07);
+  }
+
+  .overlayDarkHeader :global(.site-nav-link[aria-current='page']),
+  .overlayDarkHeader :global(.site-nav-dropdown[data-current='true'] > .site-nav-dropdown-trigger) {
+    color: #67ddd4;
+    background: transparent;
+  }
+
+  .overlayDarkHeader :global(.site-nav-action) {
+    border-color: rgba(221, 235, 255, 0.2);
+    background: rgba(31, 54, 91, 0.62);
+    color: #edf5ff;
+  }
+
+  .overlayDarkHeader :global(.site-nav-action:hover),
+  .overlayDarkHeader :global(.site-nav-action:focus-visible) {
+    border-color: rgba(103, 221, 212, 0.42);
+    background: rgba(47, 75, 116, 0.72);
+    color: #67ddd4;
+  }
+}

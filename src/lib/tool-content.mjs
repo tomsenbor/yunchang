@@ -15,6 +15,23 @@ const priorityToolMetadata = {
   elevenlabs: { developer: 'ElevenLabs', platforms: ['Web'] }
 };
 
+const featuredToolSlugs = [
+  'chatgpt',
+  'claude',
+  'gemini',
+  'deepseek',
+  'kimi',
+  'perplexity',
+  'cursor',
+  'midjourney',
+  'runway',
+  'kling-ai'
+];
+
+const featuredToolRanks = new Map(
+  featuredToolSlugs.map((slug, index) => [slug, index])
+);
+
 const explicitVideoRelations = {
   chatgpt: ['chatgpt-3min-guide', 'gemini-vs-chatgpt-video'],
   claude: ['claude-user-fit-video'],
@@ -178,6 +195,8 @@ export const tools = [...sourceTools, ...toolExpansionSeeds].map((tool) => {
     iconAlt: tool.iconAlt || `${tool.name} 标识`,
     region: tool.region || 'global',
     domestic: tool.domestic ?? false,
+    featured: featuredToolRanks.has(tool.slug),
+    featuredRank: featuredToolRanks.get(tool.slug) ?? Number.MAX_SAFE_INTEGER,
     relatedGuides,
     relatedVideos,
     relatedComparisons

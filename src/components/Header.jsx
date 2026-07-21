@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { BrandMark } from './BrandMark';
+import styles from './Header.module.css';
 
 const headerNavigation = [
   { href: '/', label: '首页' },
@@ -31,6 +32,7 @@ const headerNavigation = [
 
 export function Header() {
   const pathname = usePathname();
+  const isAiToolsLanding = pathname === '/ai-tools';
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const dropdownTriggerRefs = useRef(new Map());
@@ -88,12 +90,17 @@ export function Header() {
   }, [isMenuOpen, openDropdown]);
 
   const isCurrent = (href) => (
-    href === '/'
+    isAiToolsLanding && href === '/ai-tools'
+      ? false
+      : href === '/'
       ? pathname === '/'
       : pathname === href || pathname.startsWith(`${href}/`)
   );
 
-  const isGroupCurrent = (items) => items.some((item) => isCurrent(item.href));
+  const isGroupCurrent = (item) => (
+    (isAiToolsLanding && item.id === 'ai-tools')
+    || item.items.some((child) => isCurrent(child.href))
+  );
 
   const handleDropdownKeyDown = (event, item) => {
     if (event.key === 'ArrowDown') {
@@ -117,7 +124,11 @@ export function Header() {
   };
 
   return (
-    <header ref={headerRef} className="site-header fixed inset-x-0 top-0 z-50 bg-transparent">
+    <header
+      ref={headerRef}
+      className={`site-header fixed inset-x-0 top-0 z-50 bg-transparent ${isAiToolsLanding ? styles.overlayDarkHeader : ''}`}
+      data-variant={isAiToolsLanding ? 'overlay-dark' : 'light'}
+    >
       <div className="site-header-inner">
         <div className="site-header-shell site-brand">
           <Link href="/" className="brand-trigger site-logo-button" aria-label="返回首页">
@@ -176,7 +187,7 @@ export function Header() {
                     key={item.id}
                     className="site-nav-dropdown"
                     data-open={openDropdown === item.id ? 'true' : 'false'}
-                    data-current={isGroupCurrent(item.items) ? 'true' : 'false'}
+                    data-current={isGroupCurrent(item) ? 'true' : 'false'}
                     onMouseEnter={() => handleDropdownMouseEnter(item.id)}
                     onMouseLeave={handleDropdownMouseLeave}
                     onBlur={(event) => {
