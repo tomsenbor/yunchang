@@ -249,7 +249,7 @@ export default function ToolExplorer({ tools, categories, tasks, featuredTools, 
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroContent}>
           <div className={styles.heroHeadingGroup}>
-            <p className={styles.heroEyebrow}>全球 AI 工具库</p>
+            <p className={styles.heroEyebrow}>AI 工具探索中心</p>
             <h1 id="ai-tools-title">探索适合你的 AI 工具</h1>
           </div>
 

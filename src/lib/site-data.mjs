@@ -46,9 +46,8 @@ export const homeFilters = [
 
 export const navItems = [
   { href: '/', label: '首页' },
-  { href: '/global-ai-tools', label: '全球AI工具' },
-  { href: '/ai-tools', label: 'AI模型库' },
-  { href: '/china-ai-tools', label: '国产AI工具' },
+  { href: '/ai-tools', label: '工具总览' },
+  { href: '/china-ai-tools', label: '国内工具' },
   { href: '/guides', label: '教程' },
   { href: '/compare', label: '工具对比' },
   { href: '/videos', label: '视频解说' },
@@ -316,7 +315,6 @@ export const templates = [
 
 export const staticRoutes = [
   '/',
-  '/global-ai-tools',
   '/china-ai-tools',
   '/ai-tools',
   '/guides',

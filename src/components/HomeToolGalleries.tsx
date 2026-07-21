@@ -35,7 +35,7 @@ export function HomeToolGalleries({ globalTools, creativeTools }: HomeToolGaller
         tone="section-accent-cyan"
         className="home-section-first global-tools-section"
         action={
-          <Link href="/global-ai-tools" className="home-section-action magnetic-button">
+          <Link href="/ai-tools" className="home-section-action magnetic-button">
             <span>查看全部</span>
             <span aria-hidden="true">→</span>
           </Link>

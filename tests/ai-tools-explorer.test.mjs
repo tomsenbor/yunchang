@@ -25,6 +25,7 @@ test('AI tools page exposes the exploration center SEO structure', async () => {
   assert.match(page, /const pageTitle = '全球 AI 工具库'/);
   assert.match(page, /探索100\+精选AI工具/);
   assert.match(component, /<h1 id="ai-tools-title">探索适合你的 AI 工具<\/h1>/);
+  assert.match(component, /<p className=\{styles\.heroEyebrow\}>AI 工具探索中心<\/p>/);
   assert.equal((combined.match(/<h1\b/g) || []).length, 1, 'The page should expose one H1');
   assert.match(component, /<dt>\{stats\.tools\}\+<\/dt><dd>AI工具<\/dd>/);
   assert.match(component, /<dt>\{stats\.guides\}\+<\/dt><dd>教程<\/dd>/);

@@ -434,7 +434,7 @@ export function HomeHero({ hero }) {
             placeholder={hero.searchPlaceholder}
             className="fluid-inline-input"
           />
-          <Link href="/global-ai-tools" className="fluid-inline-action magnetic-button">
+          <Link href="/ai-tools" className="fluid-inline-action magnetic-button">
             <span>进入工具库</span>
             <span aria-hidden="true">→</span>
           </Link>

@@ -39,7 +39,6 @@ test('navigation and generated routes include global and china tool hubs', () =>
   assert.equal(navItems[0].label, '\u9996\u9875');
   assert.deepEqual(navItems.map((item) => item.href), [
     '/',
-    '/global-ai-tools',
     '/ai-tools',
     '/china-ai-tools',
     '/guides',
@@ -49,7 +48,8 @@ test('navigation and generated routes include global and china tool hubs', () =>
     '/templates'
   ]);
   assert.ok(routes.includes('/'));
-  assert.ok(routes.includes('/global-ai-tools'));
+  assert.ok(!routes.includes('/global-ai-tools'));
+  assert.ok(routes.includes('/ai-tools'));
   assert.ok(routes.includes('/china-ai-tools'));
   assert.ok(routes.includes('/ai-tools/chatgpt'));
   assert.ok(routes.includes('/ai-tools/deepseek'));
@@ -61,13 +61,22 @@ test('navigation and generated routes include global and china tool hubs', () =>
 
 test('canonical URLs and sitemap XML are generated from route data', () => {
   assert.equal(
-    buildCanonicalUrl('/global-ai-tools'),
-    'https://aixiaolvtools.com/global-ai-tools'
+    buildCanonicalUrl('/ai-tools'),
+    'https://aixiaolvtools.com/ai-tools'
   );
 
-  const sitemap = buildSitemapXml(['/', '/global-ai-tools']);
+  const sitemap = buildSitemapXml(['/', '/ai-tools']);
   assert.match(sitemap, /<loc>https:\/\/aixiaolvtools\.com\/<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/aixiaolvtools\.com\/global-ai-tools<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/aixiaolvtools\.com\/ai-tools<\/loc>/);
+  assert.doesNotMatch(sitemap, /global-ai-tools/);
+});
+
+test('legacy global AI tools route permanently redirects to the tool overview', () => {
+  const route = readFileSync(new URL('../src/app/global-ai-tools/page.js', import.meta.url), 'utf8');
+
+  assert.ok(route.includes("import { permanentRedirect } from 'next/navigation'"));
+  assert.ok(route.includes("permanentRedirect('/ai-tools')"));
+  assert.ok(!route.includes('pageMetadata'), 'redirect route should not expose independent metadata');
 });
 
 test('home data supports the global AI toolkit guide direction', () => {
@@ -748,8 +757,11 @@ test('home page uses minimal sections and compact gallery grids', () => {
   assert.ok(header.includes("usePathname"), 'header should track the current route');
   assert.ok(header.includes("label: 'AI工具'"), 'header should group AI tool entries under one primary item');
   assert.ok(header.includes("label: '学习资源'"), 'header should group learning entries under one primary item');
-  for (const href of ['/global-ai-tools', '/china-ai-tools', '/free-ai-tools', '/guides', '/videos', '/templates']) {
+  for (const href of ['/ai-tools', '/china-ai-tools', '/free-ai-tools', '/guides', '/videos', '/templates']) {
     assert.ok(header.includes(`href: '${href}'`), `header dropdowns should preserve ${href}`);
+  }
+  for (const label of ['工具总览', '国内工具', '免费工具']) {
+    assert.ok(header.includes(`label: '${label}'`), `AI tools dropdown should include ${label}`);
   }
   assert.ok(header.includes("href: '/ai-tools'"), 'header should keep the AI model library as a primary link');
   assert.ok(header.includes("href: '/compare'"), 'header should keep tool comparison as a primary link');
@@ -760,7 +772,8 @@ test('home page uses minimal sections and compact gallery grids', () => {
   assert.ok(header.includes("document.addEventListener('pointerdown'"), 'open menus should close when clicking outside the header');
   assert.ok(header.includes("window.matchMedia('(min-width: 1180px)').matches"), 'dropdown hover behavior should only run in desktop mode');
   assert.ok(header.includes('onMouseEnter={() => handleDropdownMouseEnter(item.id)}'), 'desktop dropdowns should open on hover');
-  assert.ok(header.includes("aria-current={isCurrent(item.href) ? 'page' : undefined}"), 'header should expose current navigation state');
+  assert.ok(header.includes("aria-current={isPrimaryCurrent(item.href) ? 'page' : undefined}"), 'primary navigation should expose an isolated current state');
+  assert.ok(header.includes("aria-current={isChildCurrent(child.href) ? 'page' : undefined}"), 'dropdown navigation should expose the current child state');
   assert.ok(header.includes('aria-expanded={isMenuOpen}'), 'menu button should expose its expanded state');
   assert.ok(header.includes("event.key !== 'Escape'"), 'mobile menu should support Escape to close');
   assert.ok(brandMark.includes('site-logo-mark'), 'header should render a graphical AI logo');
@@ -827,7 +840,7 @@ test('home page uses minimal sections and compact gallery grids', () => {
   assert.ok(creativeShowcase.includes('查看教程'), 'CreativeToolsShowcase should reveal a compact tutorial action');
   assert.ok(!galleries.includes('visibleCreativeTools.map((tool) => <ToolCard'), 'creative tool section should not keep the generic tool list card');
   assert.ok(galleries.includes('GlobalToolsCarousel'), 'global tools section should use the focused stamp carousel');
-  assert.ok(galleries.includes('href="/global-ai-tools" className="home-section-action magnetic-button"'), 'Global model action should keep its link and use the unified capsule action');
+  assert.ok(galleries.includes('href="/ai-tools" className="home-section-action magnetic-button"'), 'Global model action should point to the canonical tool overview');
   assert.ok(galleries.includes('href="/ai-tools" className="home-section-action magnetic-button"'), 'Creative tools action should keep its link and use the unified capsule action');
   assert.ok(galleries.includes('查看全部') && galleries.includes('查看工具库'), 'Tool gallery action copy should stay unchanged');
   assert.ok(galleries.includes('eyebrow="Model Gallery"'), 'global tools section eyebrow should be renamed to Model Gallery');

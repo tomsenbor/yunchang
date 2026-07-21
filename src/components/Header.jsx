@@ -12,8 +12,8 @@ const headerNavigation = [
     id: 'ai-tools',
     label: 'AI工具',
     items: [
-      { href: '/global-ai-tools', label: '全球AI工具' },
-      { href: '/china-ai-tools', label: '国产AI工具' },
+      { href: '/ai-tools', label: '工具总览' },
+      { href: '/china-ai-tools', label: '国内工具' },
       { href: '/free-ai-tools', label: '免费工具' }
     ]
   },
@@ -33,6 +33,7 @@ const headerNavigation = [
 export function Header() {
   const pathname = usePathname();
   const isAiToolsLanding = pathname === '/ai-tools';
+  const isAiToolsRoute = isAiToolsLanding || pathname.startsWith('/ai-tools/');
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const dropdownTriggerRefs = useRef(new Map());
@@ -90,16 +91,22 @@ export function Header() {
   }, [isMenuOpen, openDropdown]);
 
   const isCurrent = (href) => (
-    isAiToolsLanding && href === '/ai-tools'
-      ? false
-      : href === '/'
+    href === '/'
       ? pathname === '/'
       : pathname === href || pathname.startsWith(`${href}/`)
   );
 
+  const isPrimaryCurrent = (href) => (
+    href === '/ai-tools' && isAiToolsRoute ? false : isCurrent(href)
+  );
+
+  const isChildCurrent = (href) => (
+    href === '/ai-tools' ? isAiToolsRoute : isCurrent(href)
+  );
+
   const isGroupCurrent = (item) => (
-    (isAiToolsLanding && item.id === 'ai-tools')
-    || item.items.some((child) => isCurrent(child.href))
+    (isAiToolsRoute && item.id === 'ai-tools')
+    || item.items.some((child) => isChildCurrent(child.href))
   );
 
   const handleDropdownKeyDown = (event, item) => {
@@ -174,7 +181,7 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       className="site-nav-link"
-                      aria-current={isCurrent(item.href) ? 'page' : undefined}
+                      aria-current={isPrimaryCurrent(item.href) ? 'page' : undefined}
                       onClick={closeAllNavigation}
                     >
                       {item.label}
@@ -222,7 +229,7 @@ export function Header() {
                           href={child.href}
                           className="site-nav-dropdown-link"
                           role="menuitem"
-                          aria-current={isCurrent(child.href) ? 'page' : undefined}
+                          aria-current={isChildCurrent(child.href) ? 'page' : undefined}
                           onClick={closeAllNavigation}
                         >
                           {child.label}
