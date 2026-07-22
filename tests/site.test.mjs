@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 
 import {
   categories,
@@ -40,6 +41,7 @@ test('navigation and generated routes include global and china tool hubs', () =>
   assert.deepEqual(navItems.map((item) => item.href), [
     '/',
     '/ai-tools',
+    '/ai-models',
     '/china-ai-tools',
     '/guides',
     '/compare',
@@ -50,6 +52,7 @@ test('navigation and generated routes include global and china tool hubs', () =>
   assert.ok(routes.includes('/'));
   assert.ok(!routes.includes('/global-ai-tools'));
   assert.ok(routes.includes('/ai-tools'));
+  assert.ok(routes.includes('/ai-models'));
   assert.ok(routes.includes('/china-ai-tools'));
   assert.ok(routes.includes('/ai-tools/chatgpt'));
   assert.ok(routes.includes('/ai-tools/deepseek'));
@@ -57,6 +60,15 @@ test('navigation and generated routes include global and china tool hubs', () =>
   assert.ok(routes.includes('/videos/chatgpt-3min-guide'));
   assert.ok(routes.includes('/compare/chatgpt-vs-claude'));
   assert.ok(routes.includes('/free-ai-tools'));
+});
+
+test('Header closes navigation after route changes without synchronous effect state updates', async () => {
+  const header = await readFile(new URL('../src/components/Header.jsx', import.meta.url), 'utf8');
+
+  assert.doesNotMatch(header, /useEffect\(\(\) => \{\s*setIsMenuOpen\(false\);\s*setOpenDropdown\(null\);\s*\}, \[pathname\]\)/s);
+  assert.match(header, /requestAnimationFrame/);
+  assert.match(header, /\[pathname\]/);
+  assert.match(header, /closeAllNavigation/);
 });
 
 test('canonical URLs and sitemap XML are generated from route data', () => {

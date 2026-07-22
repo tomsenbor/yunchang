@@ -17,7 +17,7 @@ const headerNavigation = [
       { href: '/free-ai-tools', label: '免费工具' }
     ]
   },
-  { href: '/ai-tools', label: 'AI模型库' },
+  { href: '/ai-models', label: 'AI模型库' },
   {
     id: 'learning',
     label: '学习资源',
@@ -34,6 +34,9 @@ export function Header() {
   const pathname = usePathname();
   const isAiToolsLanding = pathname === '/ai-tools';
   const isAiToolsRoute = isAiToolsLanding || pathname.startsWith('/ai-tools/');
+  const isAiModelsLanding = pathname === '/ai-models';
+  const isAiModelsRoute = isAiModelsLanding || pathname.startsWith('/ai-models/');
+  const isDarkLanding = isAiToolsLanding || isAiModelsLanding;
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const dropdownTriggerRefs = useRef(new Map());
@@ -42,8 +45,12 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
-    setIsMenuOpen(false);
-    setOpenDropdown(null);
+    const closeFrame = requestAnimationFrame(() => {
+      setIsMenuOpen(false);
+      setOpenDropdown(null);
+    });
+
+    return () => cancelAnimationFrame(closeFrame);
   }, [pathname]);
 
   useEffect(() => {
@@ -133,8 +140,9 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className={`site-header fixed inset-x-0 top-0 z-50 bg-transparent ${isAiToolsLanding ? styles.overlayDarkHeader : ''}`}
-      data-variant={isAiToolsLanding ? 'overlay-dark' : 'light'}
+      className={`site-header fixed inset-x-0 top-0 z-50 bg-transparent ${isDarkLanding ? styles.overlayDarkHeader : ''}`}
+      data-variant={isDarkLanding ? 'overlay-dark' : 'light'}
+      data-ai-models-route={isAiModelsRoute ? 'true' : 'false'}
     >
       <div className="site-header-inner">
         <div className="site-header-shell site-brand">

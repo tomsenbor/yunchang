@@ -6,6 +6,7 @@ import {
   guides
 } from '../lib/guide-content.mjs';
 import { toolCategoryRoutes, toolRoutes } from '../lib/tool-content.mjs';
+import { modelRoutes } from '../lib/model-content.mjs';
 
 const guideUpdatedAtByRoute = new Map(
   guides.map((guide) => [`/guides/${guide.slug}`, guide.updatedAt])
@@ -23,7 +24,8 @@ export default function sitemap() {
     ...getAllRoutes(),
     ...guideCategoryRoutes,
     ...toolCategoryRoutes,
-    ...toolRoutes
+    ...toolRoutes,
+    ...modelRoutes
   ])];
 
   return routes.map((route) => ({
